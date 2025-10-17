@@ -1,0 +1,69 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "5dcedd78-3232-4f83-bbe9-ea26dc07674d",
+   "metadata": {},
+   "source": [
+    "\n",
+    "#### Análisis y Procesamiento de Señales\n",
+    "\n",
+    "# Tarea Semanal N°5 \n",
+    "#### Federico Dunel\n",
+    "#### Eugenio Briamonte"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9d477d15-4e2b-4aa2-b280-86b5e4d34967",
+   "metadata": {},
+   "source": [
+    "# Introducción\n",
+    "Para caracterizar completamente una señal es necesario conocer la manera en que se distribuye la energia en las frecuencias que la señal comprende. Esto es, comparar en magnitud la potencia asociada a cada frecuencia. Hasta ahora, estuvimos trabajando con señales generadas por nosotros mismos, señales sinusoidales \"Puras\" con frecuencias bien definidas y, por lo tanto, con distribuciones de potencia/frecuencia de estimación simple. En este trabajo se analizaron los espectros de potencia de señales biologicas, cuya obtención implica una distorsión de la señal original a la que llamamos \"Ruido\". Este ruido ocurre debido a que los procesos que se llevan a cabo en los organismos no son \"Mudos\", y aislar las señales que generan los procesos de menor interes (Aquello que no se mide directamente, sino que irrumpe en la medición en sí) no es una tarea simple. Llamamos \"Estimación espectral\" al proceso que nos permite diferenciar este ruido de la señal que se busca estudiar.\n",
+    "\n",
+    "La manera en que se calcula o estima la densidad espectral de potencia (PSD) de una señal varía según las caracteristicas de dicha señal, en este trabajo utilizamos 3 métodos para obtener la estimación de la PSD de 3 señales diferentes: Periodograma ventaneado, método Welch y método de Blackman-Tuckey. Además de diferencias matemáticas y de aplicación, los resultados de estos metodos difieren en tanto a varianza del estimador e importancia de la fuga espectral (Conceptos trabajados en TSs pasadas). Para trabajar con los 3 métodos en python se utilizaron funciones de la librería Scipy.Signal y Numpy. \n",
+    "\n",
+    "Ya realizada la estimación de la PSD, se realizó una estimación del ancho de banda (Bandwidth) de cada señal. Definimos el ancho de banda como la distancia en el eje de frecuencias entre el máximo de potencia y la frecuencia de corte, frecuencia a partir de la que la potencia de la señal haya caído una cantidad considerable (Alrededor del 90%)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d6038542-d661-48e9-a1db-2d882b16b484",
+   "metadata": {},
+   "source": [
+    "# Conclusiónes y Autoevaluación\n",
+    "\n",
+    "La dificultad de la estimación de la PSD en señales biológicas está fuertemente ligada al ruido que envuelve a la señal de interés. Según el analisis realizado sobre las señales trabajadas, la mayor parte de la potencia de las señales se encuentra en los rangos de bajas frecuencias, lo que es consistente con el comportamiento de algunas de las fuentes. El ejemplo más claro es el ECG, que registra la actividad cardiaca. Al ser el corazón un músculo de contracción armónica con una frecuencia de entre 1 y 0,5 hz, es intuitivo pensar que el pico de potencia se encontrará en un rango muy cercano a esas frecuencias. Para realizar la estimación del ancho de banda determinamos que la distribución de potencia más adecuada fue la adquirida con el método de Welch, ya que este método devuelve datos muy precisos (Con picos de potencia bien definidos) sobre los que es relativamente fácil realizar una estimación. El desafío real reside en determinar el tipo de ventana a utilizar con este método. La ventana de Hann o de Blackman aparentan ser las mejores en señales de este tipo. Sin embargo es destacable la utilidad del método Blackman-Tuckey debido a su flexibilidad y fácil manipulación. Estas caracteristicas se le atribuyen a la capacidad que le da al usuario de alterar la longitud de la ventana de demora, lo cual permite regular la suavidad de la función."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4ca7ff37-27eb-4bdb-bc19-cc8500551cf5",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
